@@ -1,0 +1,94 @@
+{
+  "SHAPE": [
+    {
+      "name": "Rectangle",
+      "description": "",
+      "type": "shape",
+      "icon": {
+        "prefix": "fas",
+        "name": "stop"
+      },
+      "option": {
+        "type": "husblerect",
+        "width": 300,
+        "height": 300,
+        "name": "New shape",
+        "fill": "transparent",
+        "strokeDashArray": [10, 10],
+        "stroke": "#000",
+        "strokeWidth": 1,
+        "borderColor": "#0591EA",
+        "borderScaleFactor": 2,
+        "originX": "center",
+        "originY": "center"
+      }
+    }
+  ],
+  "ELEMENT": [
+    {
+      "name": "HusbleTextBox",
+      "description": "",
+      "type": "element",
+      "option": {
+        "type": "husbletextbox",
+        "width": 250,
+        "height": 250,
+        "name": "New Text Box"
+      }
+    },
+    {
+      "name": "TextBox",
+      "description": "",
+      "type": "element",
+      "option": {
+        "type": "TextBox",
+        "width": 250,
+        "height": 250,
+        "fontSize": 208.33,
+        "textAlign": "center",
+        "fontFamily": "Arial",
+        "name": "New Text Box",
+				"stroke": "#000",
+				"strokeWidth": 0,
+        "borderWidth": -1,
+        "minSize": 62.5,
+        "maxSize": 208.33,
+        "automaticMultiline": true,
+        "value": "A"
+      }
+    },
+    {
+      "name": "HusbleImagePlaceholder",
+      "description": "",
+      "type": "element",
+      "option": {
+        "type": "husbleimageplaceholder",
+        "width": 250,
+        "height": 250,
+        "name": "New Image Placeholder"
+      }
+    },
+    {
+      "name": "MaskImagePlaceholder",
+      "description": "",
+      "type": "element",
+      "option": {
+        "type": "maskimageplaceholder",
+        "width": 250,
+        "height": 250,
+        "name": "New Mask Image Placeholder"
+      }
+    },
+    {
+      "name": "DynamicImage",
+      "description": "",
+      "type": "element",
+      "option": {
+        "type": "dynamicimage",
+        "width": 250,
+        "height": 250,
+        "name": "New Dynamic Image"
+      }
+    }
+  ]
+}
