@@ -752,24 +752,12 @@ class ImageMapEditor extends Component {
         <span>{i18n.t('imagemap.imagemap-editor')}</span>
       </React.Fragment>
     );
+
     const title = <ImageMapTitle title={titleContent} action={action} />;
     const content = (
       <div className="rde-editor">
-        <ImageMapItems
-          ref={(c) => {
-            this.itemsRef = c;
-          }}
-          canvasRef={this.canvasRef}
-          descriptors={descriptors}
-        />
         <div className="rde-editor-canvas-container">
-          <div className="rde-editor-header-toolbar">
-            <ImageMapHeaderToolbar
-              canvasRef={this.canvasRef}
-              selectedItem={selectedItem}
-              onSelect={onSelect}
-            />
-          </div>
+          {/* <div className="rde-editor-header-toolbar"></div> */}
           <div
             ref={(c) => {
               this.container = c;
@@ -799,33 +787,7 @@ class ImageMapEditor extends Component {
               }}
             />
           </div>
-          <div className="rde-editor-footer-toolbar">
-            <ImageMapFooterToolbar
-              canvasRef={this.canvasRef}
-              preview={preview}
-              onChangePreview={onChangePreview}
-              zoomRatio={zoomRatio}
-            />
-          </div>
         </div>
-        <ImageMapConfigurations
-          canvasRef={this.canvasRef}
-          onChange={onChange}
-          selectedItem={selectedItem}
-          onChangeAnimations={onChangeAnimations}
-          onChangeStyles={onChangeStyles}
-          onChangeDataSources={onChangeDataSources}
-          animations={animations}
-          styles={styles}
-          dataSources={dataSources}
-        />
-        <ImageMapPreview
-          preview={preview}
-          onChangePreview={onChangePreview}
-          onTooltip={onTooltip}
-          onClick={onClick}
-          objects={objects}
-        />
       </div>
     );
     return <Container title={title} content={content} loading={loading} className="" />;

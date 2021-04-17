@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "npm install && npm run start:dev",
+        "start": "yarn start:dev",
         "start:dev": "webpack-dev-server --config webpack.dev.js --inline",
         "deploy": "npm run build:lib && npm publish"
     },
