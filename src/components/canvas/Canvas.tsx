@@ -45,6 +45,8 @@ class Canvas extends Component<CanvasProps, IState> {
   };
 
   componentDidMount() {
+    const { canvasRef } = this.props;
+
     const { editable, canvasOption, width, height, responsive, ...other } = this.props;
     const { id } = this.state;
     const mergedCanvasOption = Object.assign({}, defaults.canvasOption, canvasOption, {
@@ -57,6 +59,7 @@ class Canvas extends Component<CanvasProps, IState> {
       mergedCanvasOption.backgroundColor,
       this.canvas.renderAll.bind(this.canvas),
     );
+
     this.canvas.renderAll();
     this.handler = new Handler({
       id,
@@ -150,6 +153,10 @@ class Canvas extends Component<CanvasProps, IState> {
   };
 
   handleLoad = () => {
+    // set canvas fit after init load first
+    const center = this.handler.canvas.getCenter();
+    this.canvas.zoomToPoint(new fabric.Point(center.left, center.top), 1);
+
     this.setState(
       {
         loaded: true,
