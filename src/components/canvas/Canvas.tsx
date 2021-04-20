@@ -68,6 +68,7 @@ class Canvas extends Component<CanvasProps, IState> {
       canvasOption: mergedCanvasOption,
       ...other,
     });
+
     if (this.props.responsive) {
       this.createObserver();
     } else {

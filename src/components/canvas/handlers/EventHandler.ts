@@ -1,9 +1,9 @@
-import { fabric } from "fabric";
+import { fabric } from 'fabric';
 // import anime from 'animejs';
 
-import Handler from "./Handler";
-import { FabricObject, FabricEvent } from "../utils";
-import { VideoObject } from "../objects/Video";
+import Handler from './Handler';
+import { FabricObject, FabricEvent } from '../utils';
+import { VideoObject } from '../objects/Video';
 // import { NodeObject } from '../objects/Node';
 
 /**
@@ -27,47 +27,39 @@ class EventHandler {
    */
   public initialize() {
     if (this.handler.editable) {
-      this.handler.canvas.on("object:modified", this.modified);
-      this.handler.canvas.on("object:scaling", this.scaling);
-      this.handler.canvas.on("object:scaled", this.scaled);
-      this.handler.canvas.on("object:moving", this.moving);
-      this.handler.canvas.on("object:moved", this.moved);
-      this.handler.canvas.on("object:rotating", this.rotating);
-      this.handler.canvas.on("object:rotated", this.rotated);
-      this.handler.canvas.on("mouse:wheel", this.mousewheel);
-      this.handler.canvas.on("mouse:down", this.mousedown);
-      this.handler.canvas.on("mouse:move", this.mousemove);
-      this.handler.canvas.on("mouse:up", this.mouseup);
-      this.handler.canvas.on("selection:cleared", this.selection);
-      this.handler.canvas.on("selection:created", this.selection);
-      this.handler.canvas.on("selection:updated", this.selection);
+      this.handler.canvas.on('object:modified', this.modified);
+      this.handler.canvas.on('object:scaling', this.scaling);
+      this.handler.canvas.on('object:scaled', this.scaled);
+      this.handler.canvas.on('object:moving', this.moving);
+      this.handler.canvas.on('object:moved', this.moved);
+      this.handler.canvas.on('object:rotating', this.rotating);
+      this.handler.canvas.on('object:rotated', this.rotated);
+      this.handler.canvas.on('mouse:wheel', this.mousewheel);
+      this.handler.canvas.on('mouse:down', this.mousedown);
+      this.handler.canvas.on('mouse:move', this.mousemove);
+      this.handler.canvas.on('mouse:up', this.mouseup);
+      this.handler.canvas.on('selection:cleared', this.selection);
+      this.handler.canvas.on('selection:created', this.selection);
+      this.handler.canvas.on('selection:updated', this.selection);
     } else {
-      this.handler.canvas.on("mouse:down", this.mousedown);
-      this.handler.canvas.on("mouse:move", this.mousemove);
-      this.handler.canvas.on("mouse:out", this.mouseout);
-      this.handler.canvas.on("mouse:up", this.mouseup);
-      this.handler.canvas.on("mouse:wheel", this.mousewheel);
+      this.handler.canvas.on('mouse:down', this.mousedown);
+      this.handler.canvas.on('mouse:move', this.mousemove);
+      this.handler.canvas.on('mouse:out', this.mouseout);
+      this.handler.canvas.on('mouse:up', this.mouseup);
+      this.handler.canvas.on('mouse:wheel', this.mousewheel);
     }
 
     this.handler.canvas.wrapperEl.tabIndex = 1000;
-    this.handler.canvas.wrapperEl.addEventListener(
-      "keydown",
-      this.keydown,
-      false
-    );
-    this.handler.canvas.wrapperEl.addEventListener("keyup", this.keyup, false);
-    this.handler.canvas.wrapperEl.addEventListener(
-      "mousedown",
-      this.onmousedown,
-      false
-    );
+    this.handler.canvas.wrapperEl.addEventListener('keydown', this.keydown, false);
+    this.handler.canvas.wrapperEl.addEventListener('keyup', this.keyup, false);
+    this.handler.canvas.wrapperEl.addEventListener('mousedown', this.onmousedown, false);
     // this.handler.canvas.wrapperEl.addEventListener(
     //   "contextmenu",
     //   this.contextmenu,
     //   false
     // );
     if (this.handler.keyEvent.clipboard) {
-      document.addEventListener("paste", this.paste, false);
+      document.addEventListener('paste', this.paste, false);
     }
   }
 
@@ -78,46 +70,43 @@ class EventHandler {
   public destroy = () => {
     if (this.handler.editable) {
       this.handler.canvas.off({
-        "object:modified": this.modified,
-        "object:scaling": this.scaling,
-        "object:moving": this.moving,
-        "object:moved": this.moved,
-        "object:rotating": this.rotating,
-        "mouse:wheel": this.mousewheel,
-        "mouse:down": this.mousedown,
-        "mouse:move": this.mousemove,
-        "mouse:up": this.mouseup,
-        "selection:cleared": this.selection,
-        "selection:created": this.selection,
-        "selection:updated": this.selection,
+        'object:modified': this.modified,
+        'object:scaling': this.scaling,
+        'object:moving': this.moving,
+        'object:moved': this.moved,
+        'object:rotating': this.rotating,
+        'mouse:wheel': this.mousewheel,
+        'mouse:down': this.mousedown,
+        'mouse:move': this.mousemove,
+        'mouse:up': this.mouseup,
+        'selection:cleared': this.selection,
+        'selection:created': this.selection,
+        'selection:updated': this.selection,
       });
     } else {
       this.handler.canvas.off({
-        "mouse:down": this.mousedown,
-        "mouse:move": this.mousemove,
-        "mouse:out": this.mouseout,
-        "mouse:up": this.mouseup,
-        "mouse:wheel": this.mousewheel,
+        'mouse:down': this.mousedown,
+        'mouse:move': this.mousemove,
+        'mouse:out': this.mouseout,
+        'mouse:up': this.mouseup,
+        'mouse:wheel': this.mousewheel,
       });
       this.handler.getObjects().forEach((object) => {
-        object.off("mousedown", this.handler.eventHandler.object.mousedown);
+        object.off('mousedown', this.handler.eventHandler.object.mousedown);
         if (object.anime) {
           // anime.remove(object);
         }
       });
     }
-    this.handler.canvas.wrapperEl.removeEventListener("keydown", this.keydown);
-    this.handler.canvas.wrapperEl.removeEventListener("keyup", this.keyup);
-    this.handler.canvas.wrapperEl.removeEventListener(
-      "mousedown",
-      this.onmousedown
-    );
+    this.handler.canvas.wrapperEl.removeEventListener('keydown', this.keydown);
+    this.handler.canvas.wrapperEl.removeEventListener('keyup', this.keyup);
+    this.handler.canvas.wrapperEl.removeEventListener('mousedown', this.onmousedown);
     // this.handler.canvas.wrapperEl.removeEventListener(
     //   "contextmenu",
     //   this.contextmenu
     // );
     if (this.handler.keyEvent.clipboard) {
-      this.handler.canvas.wrapperEl.removeEventListener("paste", this.paste);
+      this.handler.canvas.wrapperEl.removeEventListener('paste', this.paste);
     }
   };
 
@@ -165,7 +154,7 @@ class EventHandler {
     if (!target) {
       return;
     }
-    if (target.type === "circle" && target.parentId) {
+    if (target.type === 'circle' && target.parentId) {
       return;
     }
     const { onModified } = this.handler;
@@ -182,20 +171,20 @@ class EventHandler {
    */
   public moving = (opt: FabricEvent) => {
     const { target } = opt as any;
-    if (this.handler.interactionMode === "crop") {
+    if (this.handler.interactionMode === 'crop') {
       // this.handler.cropHandler.moving(opt);
     } else {
       if (this.handler.editable && this.handler.guidelineOption.enabled) {
         this.handler.guidelineHandler.movingGuidelines(target);
       }
-      if (target.type === "activeSelection") {
+      if (target.type === 'activeSelection') {
         const activeSelection = target as fabric.ActiveSelection;
         activeSelection.getObjects().forEach((obj: any) => {
           const left = target.left + obj.left + target.width / 2;
           const top = target.top + obj.top + target.height / 2;
-          if (obj.superType === "node") {
+          if (obj.superType === 'node') {
             // this.handler.portHandler.setCoords({ ...obj, left, top });
-          } else if (obj.superType === "element") {
+          } else if (obj.superType === 'element') {
             const { id } = obj;
             const el = this.handler.elementHandler.findById(id);
             // TODO... Element object incorrect position
@@ -204,9 +193,9 @@ class EventHandler {
         });
         return;
       }
-      if (target.superType === "node") {
+      if (target.superType === 'node') {
         // this.handler.portHandler.setCoords(target);
-      } else if (target.superType === "element") {
+      } else if (target.superType === 'element') {
         const { id } = target;
         const el = this.handler.elementHandler.findById(id);
         this.handler.elementHandler.setPosition(el, target);
@@ -223,9 +212,9 @@ class EventHandler {
     const { target } = opt;
     // this.handler.gridHandler.setCoords(target);
     if (!this.handler.transactionHandler.active) {
-      this.handler.transactionHandler.save("moved");
+      this.handler.transactionHandler.save('moved');
     }
-    if (target.superType === "element") {
+    if (target.superType === 'element') {
       const { id } = target;
       const el = this.handler.elementHandler.findById(id);
       this.handler.elementHandler.setPosition(el, target);
@@ -239,11 +228,11 @@ class EventHandler {
    */
   public scaling = (opt: FabricEvent) => {
     const { target } = opt as any;
-    if (this.handler.interactionMode === "crop") {
+    if (this.handler.interactionMode === 'crop') {
       // this.handler.cropHandler.resize(opt);
     }
     // TODO...this.handler.guidelineHandler.scalingGuidelines(target);
-    if (target.superType === "element") {
+    if (target.superType === 'element') {
       const { id, width, height } = target;
       const el = this.handler.elementHandler.findById(id);
       // update the element
@@ -251,7 +240,7 @@ class EventHandler {
       this.handler.elementHandler.setSize(el, target);
       this.handler.elementHandler.setPosition(el, target);
       const video = target as VideoObject;
-      if (video.type === "video" && video.player) {
+      if (video.type === 'video' && video.player) {
         video.player.setPlayerSize(width, height);
       }
     }
@@ -264,7 +253,7 @@ class EventHandler {
    */
   public scaled = (_opt: FabricEvent) => {
     if (!this.handler.transactionHandler.active) {
-      this.handler.transactionHandler.save("scaled");
+      this.handler.transactionHandler.save('scaled');
     }
   };
 
@@ -275,7 +264,7 @@ class EventHandler {
    */
   public rotating = (opt: FabricEvent) => {
     const { target } = opt as any;
-    if (target.superType === "element") {
+    if (target.superType === 'element') {
       const { id } = target;
       const el = this.handler.elementHandler.findById(id);
       // update the element
@@ -290,7 +279,7 @@ class EventHandler {
    */
   public rotated = (_opt: FabricEvent) => {
     if (!this.handler.transactionHandler.active) {
-      this.handler.transactionHandler.save("rotated");
+      this.handler.transactionHandler.save('rotated');
     }
   };
 
@@ -305,26 +294,26 @@ class EventHandler {
     if (!activeObject) {
       return false;
     }
-    if (activeObject.id === "workarea") {
+    if (activeObject.id === 'workarea') {
       return false;
     }
     if (e.keyCode === 38) {
-      activeObject.set("top", activeObject.top - 2);
+      activeObject.set('top', activeObject.top - 2);
       activeObject.setCoords();
       this.handler.canvas.renderAll();
       return true;
     } else if (e.keyCode === 40) {
-      activeObject.set("top", activeObject.top + 2);
+      activeObject.set('top', activeObject.top + 2);
       activeObject.setCoords();
       this.handler.canvas.renderAll();
       return true;
     } else if (e.keyCode === 37) {
-      activeObject.set("left", activeObject.left - 2);
+      activeObject.set('left', activeObject.left - 2);
       activeObject.setCoords();
       this.handler.canvas.renderAll();
       return true;
     } else if (e.keyCode === 39) {
-      activeObject.set("left", activeObject.left + 2);
+      activeObject.set('left', activeObject.left + 2);
       activeObject.setCoords();
       this.handler.canvas.renderAll();
       return true;
@@ -355,11 +344,8 @@ class EventHandler {
       zoomRatio += 0.01;
     }
     this.handler.zoomHandler.zoomToPoint(
-      new fabric.Point(
-        this.handler.canvas.getWidth() / 2,
-        this.handler.canvas.getHeight() / 2
-      ),
-      zoomRatio
+      new fabric.Point(this.handler.canvas.getWidth() / 2, this.handler.canvas.getHeight() / 2),
+      zoomRatio,
     );
     event.e.preventDefault();
     event.e.stopPropagation();
@@ -374,40 +360,33 @@ class EventHandler {
   public mousedown = (opt: FabricEvent) => {
     const event = opt as FabricEvent<MouseEvent>;
     const { editable } = this.handler;
-    if (
-      event.e.altKey &&
-      editable &&
-      !this.handler.interactionHandler.isDrawingMode()
-    ) {
+    if (event.e.altKey && editable && !this.handler.interactionHandler.isDrawingMode()) {
       this.handler.interactionHandler.grab();
       this.panning = true;
       return;
     }
-    if (this.handler.interactionMode === "grab") {
+    if (this.handler.interactionMode === 'grab') {
       this.panning = true;
       return;
     }
     const { target } = event;
     if (editable) {
-      if (
-        this.handler.prevTarget &&
-        this.handler.prevTarget.superType === "link"
-      ) {
+      if (this.handler.prevTarget && this.handler.prevTarget.superType === 'link') {
         this.handler.prevTarget.set({
           stroke: this.handler.prevTarget.originStroke,
         });
       }
-      if (target && target.type === "fromPort") {
+      if (target && target.type === 'fromPort') {
         // this.handler.linkHandler.init(target);
         return;
       }
       if (
         target &&
-        this.handler.interactionMode === "link" &&
-        (target.type === "toPort" || target.superType === "node")
+        this.handler.interactionMode === 'link' &&
+        (target.type === 'toPort' || target.superType === 'node')
       ) {
         let toPort;
-        if (target.superType === "node") {
+        if (target.superType === 'node') {
           toPort = target.toPort;
         } else {
           toPort = target;
@@ -417,10 +396,10 @@ class EventHandler {
       }
       this.handler.guidelineHandler.viewportTransform = this.handler.canvas.viewportTransform;
       this.handler.guidelineHandler.zoom = this.handler.canvas.getZoom();
-      if (this.handler.interactionMode === "selection") {
-        if (target && target.superType === "link") {
+      if (this.handler.interactionMode === 'selection') {
+        if (target && target.superType === 'link') {
           target.set({
-            stroke: target.selectFill || "green",
+            stroke: target.selectFill || 'green',
           });
         }
         this.handler.prevTarget = target;
@@ -460,15 +439,15 @@ class EventHandler {
    */
   public mousemove = (opt: FabricEvent) => {
     const event = opt as FabricEvent<MouseEvent>;
-    if (this.handler.interactionMode === "grab" && this.panning) {
+    if (this.handler.interactionMode === 'grab' && this.panning) {
       this.handler.interactionHandler.moving(event.e);
       this.handler.canvas.requestRenderAll();
     }
     if (!this.handler.editable && event.target) {
-      if (event.target.superType === "element") {
+      if (event.target.superType === 'element') {
         return;
       }
-      if (event.target.id !== "workarea") {
+      if (event.target.id !== 'workarea') {
         if (event.target !== this.handler.target) {
           // this.handler.tooltipHandler.show(event.target);
         }
@@ -476,11 +455,11 @@ class EventHandler {
         // this.handler.tooltipHandler.hide(event.target);
       }
     }
-    if (this.handler.interactionMode === "polygon") {
-      if (this.handler.activeLine && this.handler.activeLine.class === "line") {
+    if (this.handler.interactionMode === 'polygon') {
+      if (this.handler.activeLine && this.handler.activeLine.class === 'line') {
         const pointer = this.handler.canvas.getPointer(event.e);
         this.handler.activeLine.set({ x2: pointer.x, y2: pointer.y });
-        const points = this.handler.activeShape.get("points");
+        const points = this.handler.activeShape.get('points');
         points[this.handler.pointArray.length] = {
           x: pointer.x,
           y: pointer.y,
@@ -490,20 +469,20 @@ class EventHandler {
         });
         this.handler.canvas.requestRenderAll();
       }
-    } else if (this.handler.interactionMode === "line") {
-      if (this.handler.activeLine && this.handler.activeLine.class === "line") {
+    } else if (this.handler.interactionMode === 'line') {
+      if (this.handler.activeLine && this.handler.activeLine.class === 'line') {
         const pointer = this.handler.canvas.getPointer(event.e);
         this.handler.activeLine.set({ x2: pointer.x, y2: pointer.y });
       }
       this.handler.canvas.requestRenderAll();
-    } else if (this.handler.interactionMode === "arrow") {
-      if (this.handler.activeLine && this.handler.activeLine.class === "line") {
+    } else if (this.handler.interactionMode === 'arrow') {
+      if (this.handler.activeLine && this.handler.activeLine.class === 'line') {
         const pointer = this.handler.canvas.getPointer(event.e);
         this.handler.activeLine.set({ x2: pointer.x, y2: pointer.y });
       }
       this.handler.canvas.requestRenderAll();
-    } else if (this.handler.interactionMode === "link") {
-      if (this.handler.activeLine && this.handler.activeLine.class === "line") {
+    } else if (this.handler.interactionMode === 'link') {
+      if (this.handler.activeLine && this.handler.activeLine.class === 'line') {
         const pointer = this.handler.canvas.getPointer(event.e);
         this.handler.activeLine.set({ x2: pointer.x, y2: pointer.y });
       }
@@ -520,12 +499,12 @@ class EventHandler {
    */
   public mouseup = (opt: FabricEvent) => {
     const event = opt as FabricEvent<MouseEvent>;
-    if (this.handler.interactionMode === "grab") {
+    if (this.handler.interactionMode === 'grab') {
       this.panning = false;
       return;
     }
     const { target, e } = event;
-    if (this.handler.interactionMode === "selection") {
+    if (this.handler.interactionMode === 'selection') {
       // if (target && e.shiftKey && target.superType === "node") {
       //   const node = target as NodeObject;
       //   this.handler.canvas.discardActiveObject();
@@ -566,7 +545,7 @@ class EventHandler {
   public selection = (opt: FabricEvent) => {
     const { onSelect, activeSelectionOption } = this.handler;
     const target = opt.target as FabricObject<fabric.ActiveSelection>;
-    if (target && target.type === "activeSelection") {
+    if (target && target.type === 'activeSelection') {
       target.set({
         ...activeSelectionOption,
       });
@@ -587,7 +566,7 @@ class EventHandler {
     this.handler.canvas.setWidth(nextWidth).setHeight(nextHeight);
     this.handler.canvas.setBackgroundColor(
       this.handler.canvasOption.backgroundColor,
-      this.handler.canvas.renderAll.bind(this.handler.canvas)
+      this.handler.canvas.renderAll.bind(this.handler.canvas),
     );
     if (!this.handler.workarea) {
       return;
@@ -596,14 +575,14 @@ class EventHandler {
     const diffHeight = nextHeight / 2 - this.handler.height / 2;
     this.handler.width = nextWidth;
     this.handler.height = nextHeight;
-    if (this.handler.workarea.layout === "fixed") {
+    if (this.handler.workarea.layout === 'fixed') {
       this.handler.canvas.centerObject(this.handler.workarea);
       this.handler.workarea.setCoords();
       if (this.handler.gridOption.enabled) {
         return;
       }
       this.handler.canvas.getObjects().forEach((obj: FabricObject) => {
-        if (obj.id !== "workarea") {
+        if (obj.id !== 'workarea') {
           const left = obj.left + diffWidth;
           const top = obj.top + diffHeight;
           obj.set({
@@ -611,7 +590,7 @@ class EventHandler {
             top,
           });
           obj.setCoords();
-          if (obj.superType === "element") {
+          if (obj.superType === 'element') {
             const { id } = obj;
             const el = this.handler.elementHandler.findById(id);
             // update the element
@@ -622,31 +601,25 @@ class EventHandler {
       this.handler.canvas.requestRenderAll();
       return;
     }
-    if (this.handler.workarea.layout === "responsive") {
+    if (this.handler.workarea.layout === 'responsive') {
       const { scaleX } = this.handler.workareaHandler.calculateScale();
       const center = this.handler.canvas.getCenter();
       const deltaPoint = new fabric.Point(diffWidth, diffHeight);
       this.handler.canvas.relativePan(deltaPoint);
-      this.handler.zoomHandler.zoomToPoint(
-        new fabric.Point(center.left, center.top),
-        scaleX
-      );
+      this.handler.zoomHandler.zoomToPoint(new fabric.Point(center.left, center.top), scaleX);
       return;
     }
     const scaleX = nextWidth / this.handler.workarea.width;
     const scaleY = nextHeight / this.handler.workarea.height;
-    const diffScaleX =
-      nextWidth / (this.handler.workarea.width * this.handler.workarea.scaleX);
-    const diffScaleY =
-      nextHeight /
-      (this.handler.workarea.height * this.handler.workarea.scaleY);
+    const diffScaleX = nextWidth / (this.handler.workarea.width * this.handler.workarea.scaleX);
+    const diffScaleY = nextHeight / (this.handler.workarea.height * this.handler.workarea.scaleY);
     this.handler.workarea.set({
       scaleX,
       scaleY,
     });
     this.handler.canvas.getObjects().forEach((obj: any) => {
       const { id } = obj;
-      if (obj.id !== "workarea") {
+      if (obj.id !== 'workarea') {
         const left = obj.left * diffScaleX;
         const top = obj.top * diffScaleY;
         const newScaleX = obj.scaleX * diffScaleX;
@@ -658,7 +631,7 @@ class EventHandler {
           top,
         });
         obj.setCoords();
-        if (obj.superType === "element") {
+        if (obj.superType === 'element') {
           const video = obj as VideoObject;
           const { width, height } = obj;
           const el = this.handler.elementHandler.findById(id);
@@ -692,8 +665,8 @@ class EventHandler {
     const clipboardData = e.clipboardData;
     if (clipboardData.types.length) {
       clipboardData.types.forEach((clipboardType: string) => {
-        if (clipboardType === "text/plain") {
-          const textPlain = clipboardData.getData("text/plain");
+        if (clipboardType === 'text/plain') {
+          const textPlain = clipboardData.getData('text/plain');
           try {
             const objects = JSON.parse(textPlain);
             const {
@@ -705,7 +678,7 @@ class EventHandler {
               const filteredObjects = objects.filter((obj) => obj !== null);
               if (filteredObjects.length === 1) {
                 const obj = filteredObjects[0];
-                if (typeof obj.cloneable !== "undefined" && !obj.cloneable) {
+                if (typeof obj.cloneable !== 'undefined' && !obj.cloneable) {
                   return;
                 }
                 obj.left = obj.properties.left + padding;
@@ -720,7 +693,7 @@ class EventHandler {
                   if (!obj) {
                     return;
                   }
-                  if (obj.superType === "link") {
+                  if (obj.superType === 'link') {
                     obj.fromNodeId = nodes[obj.fromNodeIndex].id;
                     obj.toNodeId = nodes[obj.toNodeIndex].id;
                   } else {
@@ -728,24 +701,21 @@ class EventHandler {
                     obj.top = obj.properties.top + padding;
                   }
                   const createdObj = this.handler.add(obj, false, true);
-                  if (obj.superType === "node") {
+                  if (obj.superType === 'node') {
                     nodes.push(createdObj);
                   } else {
                     targets.push(createdObj);
                   }
                 });
-                const activeSelection = new fabric.ActiveSelection(
-                  nodes.length ? nodes : targets,
-                  {
-                    canvas: this.handler.canvas,
-                    ...this.handler.activeSelectionOption,
-                  }
-                );
+                const activeSelection = new fabric.ActiveSelection(nodes.length ? nodes : targets, {
+                  canvas: this.handler.canvas,
+                  ...this.handler.activeSelectionOption,
+                });
                 this.handler.canvas.setActiveObject(activeSelection);
                 this.handler.canvas.requestRenderAll();
               }
               if (!this.handler.transactionHandler.active) {
-                this.handler.transactionHandler.save("paste");
+                this.handler.transactionHandler.save('paste');
               }
               this.handler.isCut = false;
               this.handler.copy();
@@ -759,11 +729,11 @@ class EventHandler {
             // };
             // this.handler.add(item, true);
           }
-        } else if (clipboardType === "text/html") {
+        } else if (clipboardType === 'text/html') {
           // Todo ...
           // const textHtml = clipboardData.getData('text/html');
           // console.log(textHtml);
-        } else if (clipboardType === "Files") {
+        } else if (clipboardType === 'Files') {
           // Array.from(clipboardData.files).forEach((file) => {
           //     const { type } = file;
           //     if (type === 'image/png' || type === 'image/jpeg' || type === 'image/jpg') {
@@ -819,7 +789,7 @@ class EventHandler {
       return;
     }
     if (this.handler.shortcutHandler.isEscape(e)) {
-      if (this.handler.interactionMode === "selection") {
+      if (this.handler.interactionMode === 'selection') {
         this.handler.canvas.discardActiveObject();
         this.handler.canvas.renderAll();
       }

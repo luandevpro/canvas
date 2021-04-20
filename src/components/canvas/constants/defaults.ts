@@ -1,4 +1,4 @@
-import { WorkareaObject, FabricObjectOption } from "../utils";
+import { WorkareaObject, FabricObjectOption } from '../utils';
 
 export const canvasOption = {
   preserveObjectStacking: true,
@@ -6,8 +6,8 @@ export const canvasOption = {
   width: 300,
   height: 150,
   selection: true,
-  defaultCursor: "default",
-  backgroundColor: "#c8c8cf",
+  defaultCursor: 'default',
+  backgroundColor: '#c8c8cf',
 };
 
 export const workareaOption: Partial<WorkareaObject> = {
@@ -19,17 +19,17 @@ export const workareaOption: Partial<WorkareaObject> = {
   lockScalingY: true,
   scaleX: 1,
   scaleY: 1,
-  backgroundColor: "#fff",
+  backgroundColor: '#fff',
   hasBorders: false,
   hasControls: false,
   selectable: false,
   lockMovementX: true,
   lockMovementY: true,
-  hoverCursor: "default",
-  name: "",
-  id: "workarea",
-  type: "image",
-  layout: "fixed", // fixed, responsive, fullscreen
+  hoverCursor: 'default',
+  name: '',
+  id: 'workarea',
+  type: 'image',
+  layout: 'responsive', // fixed, responsive, fullscreen
   link: {},
   tooltip: {
     enabled: false,
@@ -41,8 +41,8 @@ export const gridOption = {
   enabled: false,
   grid: 10,
   snapToGrid: false,
-  lineColor: "#ebebeb",
-  borderColor: "#cccccc",
+  lineColor: '#ebebeb',
+  borderColor: '#cccccc',
 };
 
 export const keyEvent = {
@@ -58,7 +58,7 @@ export const keyEvent = {
   cut: true,
 };
 
-export const propertiesToInclude = ["id", "name", "locked", "editable"];
+export const propertiesToInclude = ['id', 'name', 'locked', 'editable'];
 
 export const objectOption: Partial<FabricObjectOption> = {
   rotation: 0,

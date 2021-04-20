@@ -41,13 +41,17 @@ class Title extends Component {
     const { visible } = this.state;
     return (
       <Flex
-        style={{ background: 'linear-gradient(141deg,#23303e,#404040 51%,#23303e 75%)' }}
+        style={{
+          height: '48px !important',
+          background: 'linear-gradient(141deg,#23303e,#404040 51%,#23303e 75%)',
+        }}
         flexWrap="wrap"
         flex="1"
         alignItems="center"
+        height="48px"
       >
         <Flex style={{ marginLeft: 8 }} flex="0 1 auto">
-          <span style={{ color: '#fff', fontSize: 24, fontWeight: 500 }}>Canvas</span>
+          <span style={{ color: '#fff', fontSize: 20, fontWeight: 500 }}>Husble</span>
         </Flex>
       </Flex>
     );
