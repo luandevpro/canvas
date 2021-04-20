@@ -109,7 +109,7 @@ class ZoomHandler {
    */
   public zoomOneToOne = () => {
     const center = this.handler.canvas.getCenter();
-    this.handler.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+    // this.handler.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
     this.zoomToPoint(new fabric.Point(center.left, center.top), 1);
   };
 
@@ -132,7 +132,7 @@ class ZoomHandler {
       }
     }
     const center = this.handler.canvas.getCenter();
-    this.handler.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+    // this.handler.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
     this.zoomToPoint(new fabric.Point(center.left, center.top), scaleX - decrement);
   };
 
@@ -193,7 +193,7 @@ class ZoomHandler {
       this.zoomToPoint(new fabric.Point(canvasLeft, canvasTop), scaleX);
     } else {
       const zoom = this.handler.canvas.getZoom();
-      this.handler.canvas.setViewportTransform([1, 0, 0, 1, diffLeft, diffTop]);
+      // this.handler.canvas.setViewportTransform([1, 0, 0, 1, diffLeft, diffTop]);
       this.zoomToPoint(new fabric.Point(canvasLeft, canvasTop), zoom);
     }
   };
