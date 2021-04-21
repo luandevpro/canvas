@@ -148,9 +148,9 @@ class ImageMapFooterToolbar extends Component {
           </Button.Group>
         </div>
         <div className="rde-editor-footer-toolbar-preview">
-          <Tooltip title={i18n.t('action.preview')}>
+          {/* <Tooltip title={i18n.t('action.preview')}>
             <Switch checked={preview} onChange={onChangePreview} />
-          </Tooltip>
+          </Tooltip> */}
         </div>
       </React.Fragment>
     );
